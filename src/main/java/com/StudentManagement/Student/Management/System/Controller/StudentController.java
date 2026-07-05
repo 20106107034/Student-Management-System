@@ -28,24 +28,27 @@ public class StudentController {
     }
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    public ResponseEntity<List<Student>> getAllStudents() {
+        return ResponseEntity.ok(studentService.getAllStudents());
     }
 
     @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Long id) {
-        return studentService.getStudentById(id);
+    public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
+//        Student student =studentService.getStudentById(id);
+//        return ResponseEntity.status(HttpStatus.OK).body(student);
+        return ResponseEntity.ok(studentService.getStudentById(id));
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@PathVariable Long id,
+    public ResponseEntity<Student> updateStudent(@PathVariable Long id,
                                  @Valid @RequestBody Student student) {
-        return studentService.updateStudent(id, student);
+        return ResponseEntity.ok(studentService.updateStudent(id, student));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteStudent(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
         studentService.deleteStudent(id);
+        return ResponseEntity.noContent().build();
     }
 }
