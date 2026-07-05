@@ -25,4 +25,4 @@ jobs:
         run: mvn  package -DskipTests
 
       - name: Build Docker Image
-        run: docker build -t student-management
+        run: docker build -t student-management .
